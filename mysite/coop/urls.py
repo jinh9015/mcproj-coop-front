@@ -8,4 +8,5 @@ urlpatterns = [
     path('platform/', views.platform),
     path('login/', views.login),
     path('signup/', views.signup),
+    path('cooperation/btn1_page/', views.btn1_page),
 ]
