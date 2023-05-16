@@ -7,19 +7,17 @@ from .models import coop
 
 
 def index(request):
-    return render(request,'coop_cooperation')
+    return render(request,'coop_cooperation.html')
 
 def platform(request):
-    return render(request,'coop_platform')
+    return render(request,'coop_platform.html')
 
 def locate(request):
-    return render(request,'coop_locate')
+    return render(request,'coop_locate.html')
 
 def login(request):
-    return render(request,'login')
+    return render(request,'login.html')
 
 def signup(request):
-    return render(request,'signup')
+    return render(request,'signup.html')
 
-def btn1_page(request):
-    return render(request,'btn1_page')
