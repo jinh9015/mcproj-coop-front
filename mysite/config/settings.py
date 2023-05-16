@@ -38,6 +38,7 @@ INSTALLED_APPS = [ # 앱 추가될때마다 여기에 넣어주기
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'coop',
+    'common.apps.CommonConfig',
 ]
 
 MIDDLEWARE = [
@@ -119,3 +120,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# 로그인 로그아웃 성공 시 이동할 URL
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
