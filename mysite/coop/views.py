@@ -15,8 +15,8 @@ def cooperation(request):
 def platform(request):
     return render(request,'coop/coop_platform.html')
 
-def locate(request):
-    return render(request,'coop/coop_locate.html')
+# def locate(request):
+#     return render(request,'coop/coop_locate.html')
 
 # def login(request):
 #     return render(request,'login.html')

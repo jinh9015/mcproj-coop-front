@@ -22,4 +22,5 @@ urlpatterns = [
     path('', views.index, name='index'),    # / 페이지에 해당하는 urlpatterns
     path('coop/', include('coop.urls')),    # (1) 페이지 요청을 coop/urls.py의 url 매핑으로 처리
     path('common/', include('common.urls')),
+    path('kakaomap/', include('kakaomap.urls')),
 ]
