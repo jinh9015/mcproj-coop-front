@@ -14,4 +14,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Specify the command to run when the container starts
-CMD [ "python", "./manage.py", "runserver", "0.0.0.0:8001" ]
+CMD [ "python", "./manage.py", "runserver", "0.0.0.0:8088" ]
