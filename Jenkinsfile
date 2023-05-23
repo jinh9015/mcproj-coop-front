@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     // Docker 빌드 실행
-                    sh "docker build -t jinh9015/coop ."
+                    sh "docker build -t jinh9015/coop ./coopMap"
                 }
             }
         }
