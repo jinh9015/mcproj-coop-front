@@ -6,7 +6,7 @@ WORKDIR /app
 
 RUN pip3 install django
 
-COPY mysite /app/mysite
+COPY ./mysite /app/mysite
 
 WORKDIR /app/mysite
 
