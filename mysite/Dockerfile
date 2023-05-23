@@ -1,5 +1,7 @@
 FROM python:3.10.8
 
+RUN mkdir /app
+
 WORKDIR /app
 
 RUN pip3 install django
