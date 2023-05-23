@@ -1,12 +1,12 @@
 FROM python:3.10.8
 
-RUN mkdir /app/mysite
+RUN mkdir /app
 
-WORKDIR /app/mysite
+WORKDIR /app
 
 RUN pip3 install django
 
-COPY . /app/mysite
+COPY . /app
 
 CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000" ]
 
