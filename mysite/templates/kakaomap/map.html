@@ -1,0 +1,209 @@
+{% extends 'base.html'%}
+
+{% block head %}스터디 장소 찾기{% endblock %}
+
+
+{% block content%}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>내 주변 스터디 장소</title>
+    <style>
+		.map_wrap {position:relative;overflow:hidden;width:100%;height:350px;}
+		.custom_typecontrol {position:absolute;top:10px;right:10px;overflow:hidden;width:130px;height:60px;margin: 5px;padding:5px;z-index:1;font-size:10px;font-family:'Malgun Gothic', '맑은 고딕', sans-serif;}
+		.button {
+		border: none;
+		color: white;
+		padding: 12px 20px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		margin: 4px 2px;
+		transition-duration: 0.4s;
+		cursor: pointer;
+		}
+
+		.button1 {
+		background-color: white; 
+		color: black; 
+		border: 2px solid #4CAF50;
+		}
+
+		.button1:hover {
+		background-color: #4CAF50;
+		color: white;
+		}
+
+	</style>
+
+</head>
+	<body>
+		<h1>내 주변 스터디 장소</h1>
+		<div class="map_wrap">
+			<div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+			<div class="custom_typecontrol radius_border">
+				<span id="btnRoadmap" class="button button1" onclick="getCurrentPos()">현재 위치</span>
+			</div>
+			<div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+		</div>
+		<!--html api key-->
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bea33534763d9432bbe4331aad85ccf1"></script>
+
+	<script>
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		mapOption = { 
+			center: new kakao.maps.LatLng(37.501304,127.039655), // 멀캠 역삼 좌표
+			level: 7 // zoom 
+		};  
+
+	var map = new kakao.maps.Map(mapContainer, mapOption); // create map
+		
+
+
+	// 현재 위치 함수
+	function getCurrentPos(){
+
+		navigator.geolocation.getCurrentPosition(function (position) {
+			var lat = position.coords.latitude, // 위도
+			lon = position.coords.longitude; // 경도
+			var locPosition = new kakao.maps.LatLng(lat, lon), // 내 위 좌표로 생성
+			message = '<div style="width:150px;text-align:center;padding-top:4px;padding-bottom:4px;"> 현재 위치 </div>' 	// infowindow 표시 내용
+			//margin : 바깥쪽 여백, padding: 안쪽 여백
+			// marker, infowindow 표시
+			displayMarker(locPosition, message);
+		});
+			// marker, infowindow 표시 함수
+			function displayMarker(locPosition, message) { // create marker
+				var imageSrc_loc = "https://cdn.iconfinder.com/stored_data/1039103/128/png?token=1684891994-Z%2B2ILGV8dz%2FSnl%2BuZGa218z4j5cjstvKP%2BJwpigXlgE%3D";
+				var imageSize_loc = new kakao.maps.Size(40, 40); // create marker img
+				var markerImage_loc = new kakao.maps.MarkerImage(imageSrc_loc, imageSize_loc);
+				var marker_loc = new kakao.maps.Marker({
+					map: map, 
+					position: locPosition,
+					image: markerImage_loc
+					});
+				var iwContent = message, // infowindow에 표시할 내용
+					iwRemoveable = true;
+				// create infowindow
+				var infowindow = new kakao.maps.InfoWindow({content: iwContent});
+				// to mark the infowindow on the marker
+				infowindow.open(map, marker_loc);
+				// change map center coordinates to access location
+				map.setCenter(locPosition);
+			}
+		};
+
+		var markers = [];
+		var libdata = [
+			//대구 전체/남구추가
+			[35.8684401,128.601715,'<div style="padding:5px">대구광역시립중앙도서관</div>'],
+			[35.8901576,128.621595,'<div style="padding:5px">대구광역시립동부도서관</div>'],
+			[35.8320556,128.58075,'<div style="padding:5px">대구광역시립남부도서관</div>'],
+			[35.8724502,128.55773,'<div style="padding:5px">대구광역시립서부도서관</div>'],
+			[35.8905257,128.634058,'<div style="padding:5px">대구광역시립2.28학생도서관</div>'],
+			[35.872132,128.639061,'<div style="padding:5px">대구광역시립수성도서관</div>'],
+			[35.8851248,128.583842,'<div style="padding:5px">대구광역시립북부도서관</div>'],
+			[35.8526596,128.560433,'<div style="padding:5px">대구광역시립두류도서관</div>'],
+			[35.6985224,128.447772,'<div style="padding:5px">대구광역시립달성도서관</div>'],
+			[35.8479555,128.5723398,'<div style="padding:5px">꿈틀작은도서관</div>'],
+			[35.84157307,128.573785,'<div style="padding:5px">대명어울림도서관</div>'],
+			[35.85239157,128.5988143,'<div style="padding:5px">이천어울림도서관</div>'],
+
+			//경기도 시흥시
+			[37.3775799,126.782971,'<div style="padding:5px">장곡도서관</div>'],
+			[37.3481423,126.735651,'<div style="padding:5px">중앙도서관</div>'],
+			[37.3456215,126.785149,'<div style="padding:5px">군자도서관</div>'],
+			[37.4438609,126.792593,'<div style="padding:5px">대야어린이도서관</div>'],
+			[37.3453289,126.748132,'<div style="padding:5px">정왕어린이도서관</div>'],
+			[37.4384073,126.785036,'<div style="padding:5px">신천도서관</div>'],
+			[37.4176763	,126.815542,'<div style=""padding:5px"">매화도서관</div>'],
+			[37.389041,126.736289,'<div style="padding:5px">월곶도서관</div>'],
+			[37.3855642,126.86129,'<div style="padding:5px">목감도서관</div>'],
+			[37.3734407,	126.733802,'<div style=""padding:5px"">배곧도서관</div>'],
+			[37.3713775	,126.813185,'<div style=""padding:5px"">능곡도서관</div>'],
+			[37.3713775,126.813185,'<div style="padding:5px">대야도서관</div>'],
+
+			// 충북 충주
+			[36.6350044,127.3233074,'<div style="padding:5px">옥산도서관</div>'],
+			[36.6313571	,127.4464625,'<div style=""padding:5px"">신율봉도서관</div>'],
+			[36.6124767	,127.505767,'<div style=""padding:5px"">시립도서관</div>'],
+			[36.6124767,127.505767,'<div style="padding:5px">상당도서관</div>'],
+			[36.6124767	,127.505767,'<div style=""padding:5px"">청원도서관</div>'],
+			[36.6124767	,127.505767,'<div style=""padding:5px"">오창호수도서관</div>'],
+			[36.6124767,127.505767,'<div style="padding:5px">오창도서관</div>'],
+			[36.6350044,127.3233074,'<div style="padding:5px">오송도서관</div>'],
+			[36.6267773,127.4846356,'<div style=""padding:5px"">서원도서관</div>'],
+			[36.6344935,127.4321031,'<div style=""padding:5px"">흥덕도서관</div>'],
+			[36.623808,127.3621892,'<div style=""padding:5px"">강내도서관</div>'],
+
+
+			//서울 강남
+			[37.47153836,127.096582,'<div style="padding:5px">강남구립못골도서관</div>'],
+			[37.4964968,	127.0320274,'<div style=""padding:5px"">강남역삼푸른솔도서관</div>'],
+			[37.51727791,127.0371879,'<div style="padding:5px">논현도서관</div>'],
+			[37.51727791,127.0371879,'<div style="padding:5px">대치도서관</div>'],
+			[37.4883101	,127.0388803,'<div style=""padding:5px"">도곡정보문화도서관</div>'],
+			[37.47330615,127.0997279,'<div style="padding:5px">못골한옥어린이도서관</div>'],
+			[37.51368143,127.0468374,'<div style="padding:5px">서울특별시교육청강남도서관</div>'],
+			[37.48308019,127.063867,'<div style="padding:5px">서울특별시교육청개포도서관</div>'],
+			[37.48308019,127.063867,'<div style="padding:5px">역삼도서관</div>'],
+			[37.4840224	,127.0844597,'<div style=""padding:5px"">열린도서관</div>'],
+			[37.4840224	,127.0844597,'<div style=""padding:5px"">일원라온영어도서관</div>'],
+			[37.4840224	,127.0844597,'<div style=""padding:5px"">정다운도서관</div>'],
+			[37.49972974,127.0578495,'<div style="padding:5px">즐거운도서관</div>'],
+			[37.49972974,127.0578495,'<div style="padding:5px">청담도서관</div>'],
+			[37.50230515,127.0641886,'<div style="padding:5px">행복한도서관</div>'],
+          ]
+        // 인포윈도우를 표시하는 클로저를 만드는 함수
+        function makeOverListener(map, marker, infowindow) {
+            return function() {
+                infowindow.open(map, marker);
+            };
+        }
+        // 인포윈도우를 닫는 클로저를 만드는 함수
+        function makeOutListener(infowindow) {
+            return function() {
+                infowindow.close();
+            };
+        }
+		
+		
+		
+		for(var i=0;i<libdata.length;i++){
+			// 마커 표시 위치 
+			var markerPosition  = new kakao.maps.LatLng(libdata[i][0],libdata[i][1]); 
+
+			// create marker
+			var marker = new kakao.maps.Marker({
+			    position: markerPosition
+			});
+
+			// 지도위에 마커 표시 설정
+			marker.setMap(map);
+			var iwContent = libdata[i][2];
+		    iwPosition = markerPosition //인포윈도우 표시 위치
+
+		// create infowindow
+		var infowindow = new kakao.maps.InfoWindow({
+		    position : iwPosition, 
+		    content : iwContent 
+		});
+		  
+		
+		markers.push(marker);
+		
+	
+		kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+	    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+			
+		}
+		// addMarkers in clusterer
+        clusterer.addMarkers(markers);
+	
+	
+	</script>
+	</body>
+</html>
+{% endblock %}
