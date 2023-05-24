@@ -1,0 +1,97 @@
+{% extends 'base.html'%}
+
+{% block head %}coop 찾기{% endblock %}
+
+
+{% block content%}
+
+  <div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="btn-group" role="group">
+        <button class="btn btn-primary" id="btn1">자격증</button>
+        <button class="btn btn-secondary" id="btn2">외국어</button>
+        <button class="btn btn-success" id="btn3">IT</button>
+        <button class="btn btn-danger" id="btn4">기타</button>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-md-12">
+      <div id="content">
+      </div>
+    </div>
+  </div>
+</div>
+  <script>
+    const btn1 = document.getElementById('btn1');
+    const btn2 = document.getElementById('btn2');
+    const btn3 = document.getElementById('btn3');
+    const btn4 = document.getElementById('btn4');
+    const content = document.getElementById('content');
+
+    btn1.addEventListener('click', async () => {
+      const response = await fetch('btn1_page');
+      const html = await response.text();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      content.innerHTML = '';
+      content.appendChild(doc.documentElement);
+    
+      // 가져온 HTML 파일에 포함된 JavaScript 코드 실행
+      const scripts = content.getElementsByTagName('script');
+      for (let i = 0; i < scripts.length; i++) {
+        eval(scripts[i].innerHTML);
+      }
+    });
+
+    btn2.addEventListener('click', async () => {
+      const response = await fetch('btn2_page');
+      const html = await response.text();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      content.innerHTML = '';
+      content.appendChild(doc.documentElement);
+    
+      // 가져온 HTML 파일에 포함된 JavaScript 코드 실행
+      const scripts = content.getElementsByTagName('script');
+      for (let i = 0; i < scripts.length; i++) {
+        eval(scripts[i].innerHTML);
+      }
+    });
+
+    btn3.addEventListener('click', async () => {
+      const response = await fetch('btn3_page');
+      const html = await response.text();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      content.innerHTML = '';
+      content.appendChild(doc.documentElement);
+    
+      // 가져온 HTML 파일에 포함된 JavaScript 코드 실행
+      const scripts = content.getElementsByTagName('script');
+      for (let i = 0; i < scripts.length; i++) {
+        eval(scripts[i].innerHTML);
+      }
+    });
+
+    btn4.addEventListener('click', async () => {
+      const response = await fetch('btn4_page');
+      const html = await response.text();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      content.innerHTML = '';
+      content.appendChild(doc.documentElement);
+    
+      // 가져온 HTML 파일에 포함된 JavaScript 코드 실행
+      const scripts = content.getElementsByTagName('script');
+      for (let i = 0; i < scripts.length; i++) {
+        eval(scripts[i].innerHTML);
+      }
+    });
+  </script>
+    
+  
+    
+  
+{% endblock %}
