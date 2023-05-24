@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from common.forms import UserForm
-
+@csrf_token
 def signup(request):
     """
     회원가입
