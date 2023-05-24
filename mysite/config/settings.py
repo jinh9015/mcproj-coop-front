@@ -47,11 +47,11 @@ INSTALLED_APPS = [ # 앱 추가될때마다 여기에 넣어주기
     'django.contrib.staticfiles',
     'coop',
     'common.apps.CommonConfig',
-    # 'corsheaders',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
-    # '**corsheaders.middleware.CorsMiddleware**',
+    '**corsheaders.middleware.CorsMiddleware**',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
