@@ -69,14 +69,14 @@
 			var lat = position.coords.latitude, // 위도
 			lon = position.coords.longitude; // 경도
 			var locPosition = new kakao.maps.LatLng(lat, lon), // 내 위 좌표로 생성
-			message = '<div style="height: 25px; padding:4px 50px; margin: 3px;"> 현재 위치 </div>' 	// infowindow 표시 내용
+			message = '<div style="width:150px;text-align:center;padding-top:4px;padding-bottom:4px;"> 현재 위치 </div>' 	// infowindow 표시 내용
 			//margin : 바깥쪽 여백, padding: 안쪽 여백
 			// marker, infowindow 표시
 			displayMarker(locPosition, message);
 		});
 			// marker, infowindow 표시 함수
 			function displayMarker(locPosition, message) { // create marker
-				var imageSrc_loc = "https://cdn.iconfinder.com/stored_data/1039103/128/png?token=1684133230-AAGDfh8V1%2FoYoSJIB9ei2YFMeil1v%2BpXCmsxj5%2Bk02A%3D";
+				var imageSrc_loc = "https://cdn.iconfinder.com/stored_data/1039103/128/png?token=1684891994-Z%2B2ILGV8dz%2FSnl%2BuZGa218z4j5cjstvKP%2BJwpigXlgE%3D";
 				var imageSize_loc = new kakao.maps.Size(40, 40); // create marker img
 				var markerImage_loc = new kakao.maps.MarkerImage(imageSrc_loc, imageSize_loc);
 				var marker_loc = new kakao.maps.Marker({
