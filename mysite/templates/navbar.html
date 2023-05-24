@@ -1,0 +1,39 @@
+<!-- 내비게이션바 -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary navbar bg-primary" data-bs-theme="dark">
+    <div class="container-fluid"> 
+      <a class="navbar-brand" href="{% url 'coop:index' %}">COOP</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+            <li class="nav-item ">
+                <!-- 로그인 상태 판별 => 로그인/로그아웃 링크 -->
+                {% if user.is_authenticated %}
+                <a class="nav-link active" href="{% url 'common:logout' %}">
+                    {{ user.username }} (로그아웃)  <!-- 로그인 상태=>사용자명 표시-->
+                </a>
+                {% else %}
+                <a class="nav-link active" href="{% url 'common:login' %}">로그인</a>
+                {% endif %}
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'coop:cooperation' %}">coop 모집</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="{% url 'platform:index' %}">플랫폼 추천</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'kakaomap:coopmap' %}" >주변 스터디 장소 찾기</a>
+            </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
