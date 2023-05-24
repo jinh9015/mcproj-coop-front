@@ -1,8 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from common.forms import UserForm
-from django.template.defaulttags import csrf_token
-@csrf_token
 
 def signup(request):
     """
