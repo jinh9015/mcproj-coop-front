@@ -4,7 +4,7 @@ RUN mkdir /app
 
 WORKDIR /app
 
-RUN pip3 install django
+RUN pip3 install -r requirements.txt
 
 COPY . /app
 
