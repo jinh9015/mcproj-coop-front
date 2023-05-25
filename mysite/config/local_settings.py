@@ -17,7 +17,7 @@ DATABASES = {
         'NAME': 'coop-mysql',
         'USER': 'root',
         'PASSWORD': 'password',
-        'HOST': '172.31.23.7',
+        'HOST': '43.200.10.203',
         'PORT': '3307',
     }
 }
