@@ -31,7 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = ['https://coop.wwwmc7.net']
+CSRF_TRUSTED_ORIGINS = ['https://coop.wwwmc7.net', 'http://coop.wwwmc7.net']
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
