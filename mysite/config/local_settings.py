@@ -12,12 +12,12 @@
 SECRET_KEY = 's!e!su8fn9ydb4m7hbkm07*d6y_@5ljhge$uiz)qx@b=3nm95m'
 
 DATABASES = {
-    ‘default’: {
-        ‘ENGINE’: ‘django.db.backends.mysql’,
-        ‘NAME’: ‘coop-mysql’,
-        ‘USER’: ‘root’,
-        ‘PASSWORD’: ‘password’,
-        ‘HOST’: ‘43.200.10.203’,
-        ‘PORT’: ‘3307’,
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'coop-mysql',
+        'USER': 'root',
+        'PASSWORD': 'password',
+        'HOST': '43.200.10.203',
+        'PORT': '3307',
     }
 }
